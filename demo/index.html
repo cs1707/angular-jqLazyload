@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>angular jqLazyload demo</title>
+  <style>
+    .page-heading {
+      text-align: center;
+    }
+    .lazyload {
+      width: 600px;
+      margin: 0 auto;
+      list-style: none;
+      overflow: hidden;
+    }
+    .lazyload li{
+      margin-bottom: 20px;
+    }
+    .lazyload img {
+      height: 400px;
+    }
+  </style>
+</head>
+<body ng-controller="MainCtrl">
+  <h1 class="page-heading">Angular jqLazyload demo</h1>
+  <ul class="lazyload">
+    <li ng-repeat="image in images">
+      <img jq-lazyload data-original="{{image}}" alt="">
+    </li>
+  </ul>    
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="lib/jquery.lazyload/jquery.lazyload.min.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular-jqLazyload/angular-jqLazyload.min.js"></script>
+  <script>
+    angular.module('app',['jqLazyload'])
+      .config(function($jqLazyloadProvider){
+         $jqLazyloadProvider.options = {
+            effect: 'fadeIn'
+          }
+      })
+      .controller('MainCtrl', ['$scope', '$http', function($scope, $http){
+        $scope.images = [
+          "img/theAttorney10.jpg",
+          "img/theAttorney09.jpg",
+          "img/theAttorney08.jpg",
+          "img/theAttorney07.jpg",
+          "img/theAttorney06.jpg",
+          "img/theAttorney05.jpg",
+          "img/theAttorney04.jpg",
+          "img/theAttorney03.jpg",
+          "img/theAttorney02.jpg",
+          "img/theAttorney01.jpg"
+        ]
+      }])
+  </script>
+</body>
+</html>
